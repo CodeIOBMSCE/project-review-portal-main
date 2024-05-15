@@ -1,0 +1,353 @@
+export default function ProjectList() {
+// const [hoveredProject, setHoveredProject] = React.useState(null);
+// const [cursorPosition, setCursorPosition] = React.useState({ x: 0, y: 0 });
+
+// const handleMouseEnter = (project, event) => {
+// 	setHoveredProject(project);
+// 	setCursorPosition({ x: event.clientX + "%", y: event.clientY + "%" });
+// };
+
+// const handleMouseLeave = () => {
+// 	setHoveredProject(null);
+// };
+// 	const [hoveredProject, setHoveredProject] = useState(null);
+// 	const [showBoxTimeout, setShowBoxTimeout] = useState(null);
+// 	const [isBoxVisible, setIsBoxVisible] = useState(false);
+
+// 	const handleMouseEnter = (project) => {
+// 		setShowBoxTimeout(
+// 			setTimeout(() => {
+// 				setHoveredProject(project);
+// 				setIsBoxVisible(true);
+// 			}, 2000)
+// 		);
+// 	};
+
+// 	const handleMouseLeave = () => {
+// 		clearTimeout(showBoxTimeout);
+// 		setHoveredProject(null);
+// 		setIsBoxVisible(false);
+// 	};
+
+// 	return (
+// 		<Flex px={16} py={10} direction="row" flexWrap="wrap">
+// 			{projectData.map((project) => (
+// 				<Box key={project.id}>
+// 					<Card maxW="sm" maxH="sm" p={2} position="relative">
+// 						<Box bg="teal" borderRadius="md">
+// 							<Flex justify="space-between" p={2}>
+// 								{project.tags.map((tag, index) => (
+// 									<Tag key={index}>{tag}</Tag>
+// 								))}
+// 							</Flex>
+// 							<CardHeader
+// 								fontWeight="600"
+// 								fontSize="2xl"
+// 								color="white"
+// 								pb={0}
+// 								px={2}
+// 								overflow="hidden"
+// 								noOfLines={1}
+// 								onMouseEnter={() => handleMouseEnter(project)}
+// 								onMouseLeave={handleMouseLeave}>
+// 								{project.title}
+// 							</CardHeader>
+// 						</Box>
+// 						<CardBody px={2} pt={1}>
+// 							<Text
+// 								color="gray.500"
+// 								fontSize="sm"
+// 								noOfLines={4}
+// 								textAlign="justify">
+// 								{project.description}
+// 							</Text>
+// 						</CardBody>
+// 						<CardFooter px={2} pt={1} pb={2}>
+// 							<Text fontWeight="600" fontSize="lg" mr={2}>
+// 								Guide:
+// 							</Text>
+// 							<Text fontWeight="600" fontSize="lg">
+// 								{project.guide}
+// 							</Text>
+// 						</CardFooter>
+// 						{hoveredProject === project && isBoxVisible && (
+// 							<Box
+// 								position="absolute"
+// 								top={cursorPosition.y + 20}
+// 								left={cursorPosition.x + 5}
+// 								bg="black"
+// 								color="white"
+// 								p={2}
+// 								zIndex="999"
+// 								pointerEvents="none"
+// 								borderRadius="md"
+// 								boxShadow="lg">
+// 								{project.title}
+// 							</Box>
+// 						)}
+// 					</Card>
+// 				</Box>
+// 			))}
+// 		</Flex>
+// 	);
+// }
+<---------------backGround for cards--------------------->
+                bgGradient={
+							project.tags[0] == "AAT"
+								? "linear(to-r, teal.500, blue.500)"
+								: project.tags[0] == "MP1" || project.tags[0] == "MP2"
+								? "linear(to-tr, #3498db, #00bcd4)"
+								: "linear(to-tr, #3498db, #9b59b6)"
+						}
+<-----------------<Box
+					position="absolute"
+					top="0"
+					left="0"
+					right="0"
+					bottom="0"
+					bg="black"
+					opacity="0"
+					transition="opacity 0.3s"
+					display="flex"
+					alignItems="center"
+					justifyContent="center"
+					className="hover-box">
+					<Text color="white" fontWeight="bold">
+						{project.title}
+					</Text>
+				</Box>
+<----------------
+            <Box
+				// mr="200px"
+				// ml="200px"
+				borderRadius={4}
+				key={project.id}
+				h="248px"
+				w="325px">
+				<Card
+					// maxW="sm" maxH="sm"
+					p={2}
+					boxShadow="2xl"
+					h="248px"
+					w="325px">
+					<Box
+						bgGradient={
+							project.tags[0] == "AAT"
+								? "linear(to-r, teal.500, blue.500)"
+								: project.tags[0] == "MP1" || project.tags[0] == "MP2"
+								? "linear(to-r, teal.500, blue.500)"
+								: "linear(to-r, teal.500, blue.500)"
+						}
+						borderRadius="md"
+						h="60%">
+						<HStack justify="space-between" p={2} mb="auto">
+							{project.tags.map((tag, index) => (
+								<Tag key={index} fontSize="12px">
+									{tag}
+								</Tag>
+							))}
+						</HStack>
+						<CardHeader
+							fontWeight="500"
+							fontSize="15px"
+							color="white"
+							pb={0}
+							px={2}
+							overflow="hidden"
+							noOfLines={3}>
+							{project.title}
+						</CardHeader>
+					</Box>
+					<CardBody px={2} pt={2} pb={0}>
+						<Text
+							color="gray.500"
+							fontWeight="400"
+							fontSize="13"
+							noOfLines={4}
+							textAlign="justify">
+							{project.description}
+						</Text>
+					</CardBody>
+					<CardFooter px={2} pt={1} pb={1} align="center">
+						<Text fontWeight="500" fontSize="md" mr={2} mt={1}>
+							Guide:
+						</Text>
+						<Text fontWeight="500" fontSize="md" mr="auto" mt={1}>
+							{project.guide}
+						</Text>
+						<Button
+							m={0}
+							size="sm"
+							variant="solid"
+							_hover={{ background: "teal", color: "white" }}>
+							Open
+						</Button>
+					</CardFooter>
+				</Card>
+			</Box>
+<------------------
+                    {false && (
+						<Text fontWeight="500" fontSize="md" mr={2} mt={1}>
+							Guide:
+						</Text>
+					)}
+					{false && (
+						<Text fontWeight="500" fontSize="md" mr="auto" mt={1}>
+							{project.guide}
+						</Text>
+					)}
+<-------------------
+                    <CardFooter px={2} pt={1} pb={1} align={["none", "none", "center"]}>
+					<Tag fontSize={{ base: "14px", md: "15px" }} mr="auto">
+						Guide: {project.guide}
+					</Tag>
+					<Button
+						m={0}
+						size="sm"
+						variant="solid"
+						bgGradient="linear(to-r, teal.400, blue.300)"
+						color="white"
+						_hover={{ background: "teal", color: "white" }}>
+						Open
+					</Button>
+				</CardFooter>
+<-----------------
+				<Box w="50%">
+						<Text mb={2}>No of teammates: </Text>
+						<NumberInput placeholder="No of teammates" max={7} min={1}>
+							<NumberInputField />
+							<NumberInputStepper>
+								<NumberIncrementStepper />
+								<NumberDecrementStepper />
+							</NumberInputStepper>
+						</NumberInput>
+					</Box>
+<---------------------
+				<Box position="relative">
+							{renderLabel(formData.semester, "Semester:")}
+							<Select
+								name="semester"
+								placeholder="Select semester"
+								position="absolute"
+								bottom="0"
+								left="0"
+								right="0"
+								border="0.5px solid grey"
+								zIndex={0}
+								value={formData.semester}
+								onChange={(e) =>
+									handleSelectChange("semester", e.target.value)
+								}>
+								<option>1st Sem</option>
+								<option>2nd Sem</option>
+								<option>3rd Sem</option>
+								<option>4th Sem</option>
+								<option>5th Sem</option>
+								<option>6th Sem</option>
+								<option>7th Sem</option>
+								<option>8th Sem</option>
+							</Select>
+						</Box>
+<------------------------------
+					// <Box
+				// 	border="1px solid rgba(0, 0, 0, 0.1)"
+				// 	borderRadius="10px"
+				// 	p={2}
+				// 	cursor="pointer">
+					
+				// </Box>
+<--------------------------
+				<TableContainer size="sm">
+				<Text fontSize="18px" fontWeight={500}>
+					Rubrics
+				</Text>
+				<Table variant="simple">
+					<Thead>
+						<Tr>
+							<Th style={{ width: "50px", whiteSpace: "pre-wrap" }}>
+								Criteria
+							</Th>
+							<Th style={{ width: "100px", whiteSpace: "pre-wrap" }}>
+								Excellent
+							</Th>
+							<Th style={{ width: "100px", whiteSpace: "pre-wrap" }}>Good</Th>
+							<Th style={{ width: "100px", whiteSpace: "pre-wrap" }}>
+								Unsatisfactory
+							</Th>
+							<Th style={{ width: "100px", whiteSpace: "pre-wrap" }}>Points</Th>
+						</Tr>
+					</Thead>
+					<Tbody fontSize="12px">
+						<Tr>
+							<Td>Design and Implementat ion of Program</Td>
+							<Td>
+								Able To fully Design and Implement Program using appropriate
+								blockchain concepts in accordance to the given problem
+							</Td>
+							<Td>
+								Able To Moderately Design and Implement Program using
+								appropriate blockchain concepts in accordance to the given
+								problem{" "}
+							</Td>
+							<Td>
+								Not Able to Design and Implement Program using appropriate
+								blockchain concepts in accordance to the given Problem
+							</Td>
+							<Td>37.5% (0-20 marks) PO3</Td>
+						</Tr>
+						<Tr>
+							<Td>Usage of Modern Too</Td>
+							<Td>Used efficiently </Td>
+							<Td>Used adequately</Td>
+							<Td>Used but with errors.</Td>
+							<Td>25% (0-10 marks) PO5</Td>
+						</Tr>
+						<Tr>
+							<Td>Demonstrati on</Td>
+							<Td>
+								Demonstrates the functionality of the program with proper Input
+								and Output using appropriate Tools for all cases.
+							</Td>
+							<Td>
+								Demonstrates the functionality of the program with proper Input
+								and Output using appropriate Tools for few cases
+							</Td>
+							<Td>
+								Demonstrates the functionality of the program without proper
+								Input and Output using appropriate Tools for few cases.
+							</Td>
+							<Td>12.5% (0-5 marks) PO3</Td>
+						</Tr>
+						<Tr>
+							<Td>Viva communicati on</Td>
+							<Td>
+								Able to Answer all Viva Questions of the blockchain Concepts.
+							</Td>
+							<Td>
+								Able to Answer few Viva Questions of the blockchain Concepts.
+							</Td>
+							<Td>
+								Able to Not Answer Viva Questions of the blockchain Concepts.
+							</Td>
+							<Td>12.5% (0-5 marks) PO10</Td>
+						</Tr>
+						<Tr>
+							<Td>Documentati on</Td>
+							<Td>
+								(5) Well written and neatly organized Record showing Input and
+								Output
+							</Td>
+							<Td>
+								(3) Well written and neatly organized Record without showing
+								proper Input and Output.
+							</Td>
+							<Td>
+								(2) Well written and not neatly organized Record not showing
+								proper Input and Output.{" "}
+							</Td>
+							<Td>12.5% (0-5 marks) PO10</Td>
+						</Tr>
+					</Tbody>
+					<Tfoot></Tfoot>
+				</Table>
+			</TableContainer>
