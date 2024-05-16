@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Box,
 	Flex,
@@ -10,9 +10,10 @@ import {
 	Tr,
 	Th,
 	Td,
-	TableCaption,
+	IconButton,
 	TableContainer,
 	Menu,
+	Tooltip,
 	Tag,
 	MenuButton,
 	MenuList,
@@ -21,22 +22,68 @@ import {
 	VStack,
 	Text,
 } from "@chakra-ui/react";
+import { EditIcon, AddIcon } from "@chakra-ui/icons";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { NavLink, useNavigate } from "react-router-dom";
 export default function ReviewOption() {
+	const [selectedReview, setSelectedReview] = useState("Reviews"); // Initial value
+
+	const handleMenuItemClick = (review) => {
+		setSelectedReview(review);
+	};
+
+	const navigate = useNavigate();
+
+	const handleRubicsClick = () => {
+		navigate("/rubics/add");
+	};
+	const handleEditClick = () => {
+		// navigate("/editrubics")
+	};
 	return (
 		<Box>
-			<Flex mb={3}>
+			<Flex
+				justify="space-between"
+				// borderRadius="10px"
+				mb={5}
+				pb={4}
+				align="center"
+				borderBottom="2px solid rgba(0, 0, 0, 0.1)">
 				<Menu>
-					<MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-						Actions
+					<MenuButton as={Button} w="150px" rightIcon={<ChevronDownIcon />}>
+						{selectedReview}
 					</MenuButton>
 					<MenuList>
-						<MenuItem>Review 1</MenuItem>
-						<MenuItem>Review 2</MenuItem>
-						<MenuItem>Review 3</MenuItem>
-						<MenuItem>Final Review</MenuItem>
+						<MenuItem onClick={() => handleMenuItemClick("Review 1")}>
+							Review 1
+						</MenuItem>
+						<MenuItem onClick={() => handleMenuItemClick("Review 2")}>
+							Review 2
+						</MenuItem>
+						<MenuItem onClick={() => handleMenuItemClick("Review 3")}>
+							Review 3
+						</MenuItem>
+						<MenuItem onClick={() => handleMenuItemClick("Final Review")}>
+							Final Review
+						</MenuItem>
 					</MenuList>
 				</Menu>
+
+				<Tooltip
+					label="Add rubics"
+					aria-label="Edit tooltip"
+					fontSize="13px"
+					borderRadius="5px">
+					<IconButton
+						w="auto"
+						// bgGradient="linear(to-r, teal.400, blue.400)"
+						bg="teal"
+						color="white"
+						h="20px"
+						onClick={handleRubicsClick}
+						p={3}
+						icon={<AddIcon />}></IconButton>
+				</Tooltip>
 			</Flex>
 			<TableContainer size="sm">
 				<Text fontSize="18px" fontWeight={500}>
@@ -45,14 +92,15 @@ export default function ReviewOption() {
 				<Table variant="simple">
 					<Thead>
 						<Tr>
-							<Th style={{ width: "50px" }}>Criteria</Th>
-							<Th style={{ width: "100px" }}>Excellent</Th>
-							<Th style={{ width: "100px" }}>Good</Th>
-							<Th style={{ width: "100px" }}>Unsatisfactory</Th>
-							<Th style={{ width: "100px" }}>Points</Th>
+							<Th style={{ width: "45px" }}>Criteria</Th>
+							<Th style={{ width: "45px" }}>Excellent</Th>
+							<Th style={{ width: "45px" }}>Good</Th>
+							<Th style={{ width: "45px" }}>Unsatisfactory</Th>
+							<Th style={{ width: "45px" }}>Points</Th>
+							<Th style={{ width: "45px" }}>Points</Th>
 						</Tr>
 					</Thead>
-					<Tbody fontSize="12px">
+					<Tbody fontSize="13px">
 						<Tr>
 							<Td>
 								<Box style={{ whiteSpace: "pre-wrap" }}>
@@ -187,6 +235,15 @@ export default function ReviewOption() {
 									12.5% (0-5 marks) PO10
 								</Box>
 							</Td>
+						</Tr>
+						<Tr>
+							<Td></Td>
+							<Td></Td>
+							<Td></Td>
+							<Td fontWeight={500} fontSize="14px">
+								Total
+							</Td>
+							<Td></Td>
 						</Tr>
 					</Tbody>
 					<Tfoot></Tfoot>

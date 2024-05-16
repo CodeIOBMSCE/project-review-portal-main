@@ -60,6 +60,7 @@ export default function NewProjectInfo() {
 		title: "",
 		description: "",
 		semester: "",
+		coursecode: "",
 		projectType: "",
 		guide: "",
 	});
@@ -82,7 +83,7 @@ export default function NewProjectInfo() {
 					zIndex={1}
 					bg="white"
 					textAlign="left"
-					px={1}>
+					px={2}>
 					{str}
 				</Text>
 			);
@@ -112,7 +113,19 @@ export default function NewProjectInfo() {
 						</Text>
 						<Textarea placeholder="Description" border="0.5px solid grey" />
 					</VStack>
-					<SimpleGrid columns={3} spacing={5} w="full" mt={7} h="55px">
+					<SimpleGrid columns={4} spacing={5} w="full" mt={7} h="55px">
+						<Box position="relative" mt={1}>
+							{renderLabel(formData.semester, "Course Code")}
+							<Input
+								name="coursecode"
+								placeholder="Course code"
+								value={formData.coursecode}
+								onChange={handleChange}
+								border="0.5px solid grey"
+								zIndex={0}
+								py={1}
+							/>
+						</Box>
 						<Box position="relative">
 							{renderLabel(formData.semester, "Semester")}
 							<Select

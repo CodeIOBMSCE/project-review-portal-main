@@ -1,47 +1,63 @@
-import React, { useState } from "react";
-import {
-	Box,
-	Flex,
-	Button,
-	IconButton,
-	Heading,
-	Image,
-	Stack,
-	SimpleGrid,
-	Input,
-	Tag,
-	CardFooter,
-	Textarea,
-	HStack,
-	Text,
-} from "@chakra-ui/react";
+import React, { useState, useMemo } from "react";
+import { Box, Flex, Button, IconButton, Input, Text } from "@chakra-ui/react";
+import parse from "html-react-parser";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { EditIcon, CloseIcon } from "@chakra-ui/icons";
+import "./ProjectOption.css";
 
 export default function ProductOption() {
 	const [editOpen, setEditOpen] = useState(false);
 	const [tempTitle, setTempTitle] = useState("");
 	const [tempDescription, setTempDescription] = useState("");
-	const [title, setTitle] = useState("#Project title");
-	const [description, setDescription] = useState("#Project description");
+	const [title, setTitle] = useState("#Project Title");
+	const [description, setDescription] = useState("#Project Description");
 
 	const handleChange = (e, inputContent) => {
 		if (inputContent === "title") setTempTitle(e.target.value);
-		else if (inputContent === "description") setTempDescription(e.target.value);
+		//else if (inputContent === "description") setTempDescription(e);
 	};
 
 	const handleClick = (clickType) => {
-		if (clickType === "edit") setEditOpen(true);
-		else if (clickType === "close") setEditOpen(false);
+		if (clickType === "edit") {
+			setEditOpen(true);
+		} else if (clickType === "close") setEditOpen(false);
 	};
 	const handleSubmit = () => {
 		if (tempTitle != "") setTitle(tempTitle);
+
 		if (tempDescription != "") setDescription(tempDescription);
 		setTempTitle("");
 		setTempDescription("");
 		setEditOpen(false);
 	};
+	const modules = useMemo(
+		() => ({
+			toolbar: {
+				container: [
+					[{ header: [2, 3, 4, false] }],
+					["bold", "italic", "underline", "blockquote"],
+					[{ color: [] }],
+					[
+						{ list: "ordered" },
+						{ list: "bullet" },
+						{ indent: "-1" },
+						{ indent: "+1" },
+					],
+					["code-block"],
+					[("link", "image")],
+					[{ script: "sub" }, { script: "super" }],
+				],
+			},
+			clipboard: {
+				matchVisual: true,
+			},
+		}),
+		[]
+	);
+
 	return (
-		<Box>
+		<Box p={4}>
 			<Flex
 				justify="flex-end"
 				// borderRadius="10px"
@@ -87,11 +103,12 @@ export default function ProductOption() {
 						border="0.5px solid grey"
 						mb={3}
 					/>
-					<Textarea
+					<ReactQuill
 						fontSize="14px"
+						modules={modules}
 						value={tempDescription}
-						h="200px"
-						onChange={(e) => handleChange(e, "description")}
+						theme="snow"
+						onChange={setTempDescription}
 						placeholder="Enter description"
 						border="0.5px solid grey"
 					/>
@@ -101,12 +118,10 @@ export default function ProductOption() {
 					</Button>
 				</Box>
 			)}
-			<Text fontSize="18px" mb={3} fontWeight={500}>
+			<Text fontSize="20px" mb={3} fontWeight={500}>
 				{title}
 			</Text>
-			<Text fontSize="15px" whiteSpace="pre-wrap">
-				{description}
-			</Text>
+			<div className="blog-view">{parse(description)}</div>
 		</Box>
 	);
 }

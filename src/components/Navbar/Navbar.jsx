@@ -18,6 +18,9 @@ export default function Navbar() {
 	const handleNotificationClick = () => {
 		navigate("/notification");
 	};
+	const handleUserClick = () => {
+		navigate("/login");
+	};
 	const handleLogoClick = () => {
 		navigate("/");
 	};
@@ -45,7 +48,7 @@ export default function Navbar() {
 						size="md"
 						mr={4}
 						_hover={{ background: "teal", color: "white" }}>
-						<NavLink to={"/newproject"}>New Project</NavLink>
+						<NavLink to={"/project/new"}>New Project</NavLink>
 					</Button>
 					<IconButton
 						variant="ghost"
@@ -64,6 +67,7 @@ export default function Navbar() {
 						aria-label="Profile"
 						fontSize="33px"
 						borderRadius="full"
+						onClick={handleUserClick}
 						icon={<FaCircleUser />}
 						ml={2}
 					/>
