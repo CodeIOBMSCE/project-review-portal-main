@@ -75,7 +75,7 @@ export default function Signup() {
 									<option value="CSE">Computer Science</option>
 									<option value="ECE">Electronics and Communication</option>
 									<option value="ME">Mechanical</option>
-									<option value="CE">Civil</option>
+									<option value="CV">Civil</option>
 									<option value="EE">Electrical</option>
 								</Select>
 							</FormControl>

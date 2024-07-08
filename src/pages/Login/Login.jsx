@@ -11,6 +11,9 @@ import {
 	Box,
 	Link,
 	Avatar,
+	HStack,
+	Radio,
+	RadioGroup,
 	FormControl,
 	FormHelperText,
 	InputRightElement,
@@ -22,6 +25,7 @@ const CFaLock = chakra(FaLock);
 
 export default function Login() {
 	const [showPassword, setShowPassword] = useState(false);
+	const [role, setRole] = useState("Student");
 
 	const handleShowClick = () => setShowPassword(!showPassword);
 
@@ -54,7 +58,7 @@ export default function Login() {
 										pointerEvents="none"
 										children={<CFaUserAlt color="gray.300" />}
 									/>
-									<Input type="email" placeholder="email address" />
+									<Input type="email" placeholder="Email address" />
 								</InputGroup>
 							</FormControl>
 							<FormControl>
@@ -77,6 +81,18 @@ export default function Login() {
 								<FormHelperText textAlign="right">
 									<Link href="/login/password-reset">forgot password?</Link>
 								</FormHelperText>
+							</FormControl>
+							<FormControl as="fieldset">
+								<RadioGroup onChange={setRole} value={role}>
+									<HStack spacing="24px">
+										<Radio value="Student">Student</Radio>
+										<Radio value="Teacher">Teacher</Radio>
+										<Radio value="HOD">HOD</Radio>
+										<Radio value="Project Coordinator">
+											Project Coordinator
+										</Radio>
+									</HStack>
+								</RadioGroup>
 							</FormControl>
 							<Button
 								borderRadius="20px"
